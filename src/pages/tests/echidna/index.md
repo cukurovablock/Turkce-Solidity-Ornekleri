@@ -1,32 +1,32 @@
 ---
 title: Echidna
 version: 0.8.20
-description: An example of testing contracts with Echidna
+description: Echidna ile kontrat test etme örneği
 keywords: [test, echidna]
 ---
 
-Examples of fuzzing with [Echidna](https://github.com/crytic/echidna).
+[Echidna](https://github.com/crytic/echidna) ile kontrat test etme örneği.
 
-1. Save the solidity contract as `TestEchidna.sol`
-2. In the folder where your contract is stored execute the following command.
+1. Solidity kontratını `TestEchidna.sol`  olarak kaydedin.
+2. Kontratınızın olduğu klasörde aşağıdaki komutu çalıştırın.
 
 ```shell
 docker run -it --rm -v $PWD:/code trailofbits/eth-security-toolbox
 ```
 
-Inside docker, your code will be stored at `/code`
+Docker içinde, kodunuz `/code` dizininde kaydedilecek.
 
-3. See the comments below and execute `echidna-test` commands.
+3. Aşağıdaki yorum satırlarına bakın ve `echidna-test` komutunu çalıştırın.
 
 ```solidity
 {{{TestEchidna}}}
 ```
 
-### Testing Time and Sender
+### Zaman ve Göndericiyi Test Etme
 
-Echidna can fuzz timestamp. Range of timestamp is set in the configuration. Default is 7 days.
+Echidna, zaman damgasını (timestamp) fuzzlayabilir. Zaman damgasının aralığı yapılandırmada belirlenir. Varsayılan olarak 7 gündür.
 
-Contract callers can also be set in the configuration. Default accounts are
+Kontrat'ı çağıranlar yapılandırmada belirlenebilir. Varsayılan cüzdanlar şunlardır:
 
 - `0x10000`
 - `0x20000`

@@ -10,8 +10,8 @@ contract EchidnaTestTimeAndCaller {
     uint private createdAt = block.timestamp;
 
     /*
-    test will fail if Echidna can call setFail()
-    test will pass otherwise
+    test başarısız olacak eğer Echidna, setFail() fonksiyonunu çağırabilirse
+    öteki durumda test başarılı olacak
     */
     function echidna_test_pass() public view returns (bool) {
         return pass;
@@ -19,17 +19,17 @@ contract EchidnaTestTimeAndCaller {
 
     function setFail() external {
         /*
-        Echidna can call this function if delay <= max block delay
-        Otherwise Echidna will not be able to call this function.
-        Max block delay can be extended by specifying it in a configuration file.
+        Echidna bu fonsksiyonu çağırabilir eğer delay <= max block delay olursa
+        Öteki durumda Echidna bu fonksiyonu çağıramayacak
+        Configuration dosyasındaki ayarlar değiştirilerek "Max block delay" arttırılabilir
         */
         uint delay = 7 days;
         require(block.timestamp >= createdAt + delay);
         pass = false;
     }
 
-    // Default senders
-    // Change the addresses to see the test fail
+    // Varsayılan gönderici adresler
+    // Adresi değiştirip testin başarısız olup olmadığına bak
     address[3] private senders = [
         address(0x10000),
         address(0x20000),
@@ -38,14 +38,14 @@ contract EchidnaTestTimeAndCaller {
 
     address private sender = msg.sender;
 
-    // Pass _sender as input and require msg.sender == _sender
-    // to see _sender for counter example
+    // _sender değişkenini input olarak ver ve 
+    // require msg.sender == _sender'daki _sender değişkenine bak
     function setSender(address _sender) external {
         require(_sender == msg.sender);
         sender = msg.sender;
     }
 
-    // Check default senders. Sender should be one of the 3 default accounts.
+    // Varsayılan gönderici adresi kontrol et. sender değişkeni varsayılan 3 adresten biri olmalı
     function echidna_test_sender() public view returns (bool) {
         for (uint i; i < 3; i++) {
             if (sender == senders[i]) {

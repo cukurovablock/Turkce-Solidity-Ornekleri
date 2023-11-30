@@ -1,7 +1,7 @@
 // metadata
 export const version = "0.8.20"
 export const title = "Echidna"
-export const description = "An example of testing contracts with Echidna"
+export const description = "Echidna ile kontrat test etme örneği"
 
 export const keywords = ["test", "echidna"]
 
@@ -16,15 +16,15 @@ export const codes = [
   },
 ]
 
-const html = `<p>Examples of fuzzing with <a href="https://github.com/crytic/echidna">Echidna</a>.</p>
+const html = `<p><a href="https://github.com/crytic/echidna">Echidna</a> ile test örnekleri.</p>
 <ol>
-<li>Save the solidity contract as <code>TestEchidna.sol</code></li>
-<li>In the folder where your contract is stored execute the following command.</li>
+<li>Solidity kontratını <code>TestEchidna.sol</code> olarak kaydedin</li>
+<li>Kontratınızın olduğu klasörde aşağıdaki komutu çalıştırın.</li>
 </ol>
 <pre><code class="language-shell">docker run -it --rm -v $PWD:/code trailofbits/eth-security-toolbox
-</code></pre><p>Inside docker, your code will be stored at <code>/code</code></p>
+</code></pre><p>Docker içinde, kodunuz <code>/code</code> dizininde kaydedilecek</p>
 <ol start="3">
-<li>See the comments below and execute <code>echidna-test</code> commands.</li>
+<li>Aşağıdaki yorum satırlarına bakın ve <code>echidna-test</code> komutunu çalıştırın.</li>
 </ol>
 <pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
 <span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.20;</span>
@@ -54,9 +54,9 @@ echidna-test TestEchidna.sol --contract TestCounter
     }
 
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">echidna_test_count</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title"><span class="hljs-keyword">view</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">bool</span></span>) </span>{
-        <span class="hljs-comment">// Here we are testing that Counter.count should always be &lt;= 5.</span>
-        <span class="hljs-comment">// Test will fail. Echidna is smart enough to call Counter.inc() more</span>
-        <span class="hljs-comment">// than 5 times.</span>
+        <span class="hljs-comment">// Burada Counter.count'ın her zaman &lt;= 5 olup olmadığını kontrol ediyoruz.</span>
+        <span class="hljs-comment">// Test başarısız olacak. Echidna Counter.inc() fonksiyonunu </span>
+        <span class="hljs-comment">// 5 defadan fazla çağıracak kadar akıllı.</span>
         <span class="hljs-keyword">return</span> count <span class="hljs-operator">&lt;</span><span class="hljs-operator">=</span> <span class="hljs-number">5</span>;
     }
 }
@@ -65,8 +65,8 @@ echidna-test TestEchidna.sol --contract TestCounter
 echidna-test TestEchidna.sol --contract TestAssert --check-asserts
 */</span>
 <span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">TestAssert</span> </span>{
-    <span class="hljs-comment">// Asserts not detected in 0.8.</span>
-    <span class="hljs-comment">// Switch to 0.7 to test assertions</span>
+    <span class="hljs-comment">// 0.8'de deneme tespit edilmedi.</span>
+    <span class="hljs-comment">// Denemeleri yapmak için 0.7'ye geçin.</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test_assert</span>(<span class="hljs-params"><span class="hljs-keyword">uint</span> _i</span>) <span class="hljs-title"><span class="hljs-keyword">external</span></span> </span>{
         <span class="hljs-built_in">assert</span>(_i <span class="hljs-operator">&lt;</span> <span class="hljs-number">10</span>);
     }
@@ -88,9 +88,9 @@ echidna-test TestEchidna.sol --contract TestAssert --check-asserts
         }
     }
 }
-</code></pre><h3>Testing Time and Sender</h3>
-<p>Echidna can fuzz timestamp. Range of timestamp is set in the configuration. Default is 7 days.</p>
-<p>Contract callers can also be set in the configuration. Default accounts are</p>
+</code></pre><h3>Zaman ve Göndericiyi Test Etme</h3>
+<p>Echidna, zaman damgasını (timestamp) fuzzlayabilir. Zaman damgasının aralığı yapılandırmada belirlenir. Varsayılan olarak 7 gündür.</p>
+<p>Kontrat'ı çağıranlar yapılandırmada belirlenebilir. Varsayılan cüzdanlar şunlardır:</p>
 <ul>
 <li><code>0x10000</code></li>
 <li><code>0x20000</code></li>
@@ -108,8 +108,8 @@ echidna-test EchidnaTestTimeAndCaller.sol --contract EchidnaTestTimeAndCaller
     <span class="hljs-keyword">uint</span> <span class="hljs-keyword">private</span> createdAt <span class="hljs-operator">=</span> <span class="hljs-built_in">block</span>.<span class="hljs-built_in">timestamp</span>;
 
     <span class="hljs-comment">/*
-    test will fail if Echidna can call setFail()
-    test will pass otherwise
+    test başarısız olacak eğer Echidna, setFail() fonksiyonunu çağırabilirse
+    öteki durumda test başarılı olacak
     */</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">echidna_test_pass</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title"><span class="hljs-keyword">view</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">bool</span></span>) </span>{
         <span class="hljs-keyword">return</span> pass;
@@ -117,17 +117,17 @@ echidna-test EchidnaTestTimeAndCaller.sol --contract EchidnaTestTimeAndCaller
 
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setFail</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">external</span></span> </span>{
         <span class="hljs-comment">/*
-        Echidna can call this function if delay &lt;= max block delay
-        Otherwise Echidna will not be able to call this function.
-        Max block delay can be extended by specifying it in a configuration file.
+        Echidna bu fonsksiyonu çağırabilir eğer delay <= max block delay olursa
+        Öteki durumda Echidna bu fonksiyonu çağıramayacak
+        Configuration dosyasındaki ayarlar değiştirilerek "Max block delay" arttırılabilir
         */</span>
         <span class="hljs-keyword">uint</span> delay <span class="hljs-operator">=</span> <span class="hljs-number">7</span> <span class="hljs-literal">days</span>;
         <span class="hljs-built_in">require</span>(<span class="hljs-built_in">block</span>.<span class="hljs-built_in">timestamp</span> <span class="hljs-operator">&gt;</span><span class="hljs-operator">=</span> createdAt <span class="hljs-operator">+</span> delay);
         pass <span class="hljs-operator">=</span> <span class="hljs-literal">false</span>;
     }
 
-    <span class="hljs-comment">// Default senders</span>
-    <span class="hljs-comment">// Change the addresses to see the test fail</span>
+    <span class="hljs-comment">// Varsayılan gönderici adresler</span>
+    <span class="hljs-comment">// Adresi değiştirip testin başarısız olup olmadığına bak</span>
     <span class="hljs-keyword">address</span>[<span class="hljs-number">3</span>] <span class="hljs-keyword">private</span> senders <span class="hljs-operator">=</span> [
         <span class="hljs-keyword">address</span>(<span class="hljs-number">0x10000</span>),
         <span class="hljs-keyword">address</span>(<span class="hljs-number">0x20000</span>),
@@ -136,14 +136,14 @@ echidna-test EchidnaTestTimeAndCaller.sol --contract EchidnaTestTimeAndCaller
 
     <span class="hljs-keyword">address</span> <span class="hljs-keyword">private</span> sender <span class="hljs-operator">=</span> <span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>;
 
-    <span class="hljs-comment">// Pass _sender as input and require msg.sender == _sender</span>
-    <span class="hljs-comment">// to see _sender for counter example</span>
+    <span class="hljs-comment">// _sender değişkenini input olarak ver ve </span>
+    <span class="hljs-comment">// require msg.sender == _sender'daki _sender değişkenine bak</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setSender</span>(<span class="hljs-params"><span class="hljs-keyword">address</span> _sender</span>) <span class="hljs-title"><span class="hljs-keyword">external</span></span> </span>{
         <span class="hljs-built_in">require</span>(_sender <span class="hljs-operator">=</span><span class="hljs-operator">=</span> <span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>);
         sender <span class="hljs-operator">=</span> <span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>;
     }
 
-    <span class="hljs-comment">// Check default senders. Sender should be one of the 3 default accounts.</span>
+    <span class="hljs-comment">// Varsayılan gönderici adresi kontrol et. sender değişkeni varsayılan 3 adresten biri olmalı.</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">echidna_test_sender</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title"><span class="hljs-keyword">view</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">bool</span></span>) </span>{
         <span class="hljs-keyword">for</span> (<span class="hljs-keyword">uint</span> i; i <span class="hljs-operator">&lt;</span> <span class="hljs-number">3</span>; i<span class="hljs-operator">+</span><span class="hljs-operator">+</span>) {
             <span class="hljs-keyword">if</span> (sender <span class="hljs-operator">=</span><span class="hljs-operator">=</span> senders[i]) {

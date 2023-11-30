@@ -26,9 +26,9 @@ contract TestCounter is Counter {
     }
 
     function echidna_test_count() public view returns (bool) {
-        // Here we are testing that Counter.count should always be <= 5.
-        // Test will fail. Echidna is smart enough to call Counter.inc() more
-        // than 5 times.
+        // Burada Counter.count'ın her zaman <= 5 olup olmadığını kontrol ediyoruz.
+        // Test başarısız olacak. Echidna Counter.inc() fonksiyonunu
+        // 5 defadan fazla çağıracak kadar akıllı.
         return count <= 5;
     }
 }
@@ -37,8 +37,8 @@ contract TestCounter is Counter {
 echidna-test TestEchidna.sol --contract TestAssert --check-asserts
 */
 contract TestAssert {
-    // Asserts not detected in 0.8.
-    // Switch to 0.7 to test assertions
+    // 0.8'de deneme tespit edilmedi.
+    // Denemeleri yapmak için 0.7'ye geçin.
     function test_assert(uint _i) external {
         assert(_i < 10);
     }
