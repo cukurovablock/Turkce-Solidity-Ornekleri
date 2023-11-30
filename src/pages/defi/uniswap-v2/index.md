@@ -5,15 +5,15 @@ description: Uniswap V2 swap
 keywords: [defi, uniswap, v2, swap, amm]
 ---
 
-`swapExactTokensForTokens` sells all tokens for another.
+`swapExactTokensForTokens` fonksiyonu tüm tokenları diğer tokenlar için satıyor.
 
-`swapTokensForExactTokens` buys specific amount of tokens set by the caller.
+`swapTokensForExactTokens` fonksiyonu çağıran kişinin almak istediği miktarda tokeni satın almasını sağlıyor.
 
 ```solidity
 {{{UniswapV2SwapExamples}}}
 ```
 
-### Test with Foundry
+### Foundry ile Test
 
 ```solidity
 {{{UniswapV2SwapExamplesTest}}}

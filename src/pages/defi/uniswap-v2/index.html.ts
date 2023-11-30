@@ -16,8 +16,8 @@ export const codes = [
   },
 ]
 
-const html = `<p><code>swapExactTokensForTokens</code> sells all tokens for another.</p>
-<p><code>swapTokensForExactTokens</code> buys specific amount of tokens set by the caller.</p>
+const html = `<p><code>swapExactTokensForTokens</code> fonksiyonu tüm tokenları diğer tokenlar için satıyor.</p>
+<p><code>swapTokensForExactTokens</code> fonksiyonu çağıran kişinin almak istediği miktarda tokeni satın almasını sağlıyor.</p>
 <pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
 <span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.20;</span>
 
@@ -33,7 +33,7 @@ const html = `<p><code>swapExactTokensForTokens</code> sells all tokens for anot
     IERC20 <span class="hljs-keyword">private</span> weth <span class="hljs-operator">=</span> IERC20(WETH);
     IERC20 <span class="hljs-keyword">private</span> dai <span class="hljs-operator">=</span> IERC20(DAI);
 
-    <span class="hljs-comment">// Swap WETH to DAI</span>
+    <span class="hljs-comment">// WETH'yi DAI'ye çevir</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">swapSingleHopExactAmountIn</span>(<span class="hljs-params">
         <span class="hljs-keyword">uint</span> amountIn,
         <span class="hljs-keyword">uint</span> amountOutMin
@@ -54,11 +54,11 @@ const html = `<p><code>swapExactTokensForTokens</code> sells all tokens for anot
             <span class="hljs-built_in">block</span>.<span class="hljs-built_in">timestamp</span>
         );
 
-        <span class="hljs-comment">// amounts[0] = WETH amount, amounts[1] = DAI amount</span>
+        <span class="hljs-comment">// amounts[0] = WETH miktarı, amounts[1] = DAI miktarı</span>
         <span class="hljs-keyword">return</span> amounts[<span class="hljs-number">1</span>];
     }
 
-    <span class="hljs-comment">// Swap DAI -&gt; WETH -&gt; USDC</span>
+    <span class="hljs-comment">// DAI -&gt; WETH -&gt; USDC (Çevir)</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">swapMultiHopExactAmountIn</span>(<span class="hljs-params">
         <span class="hljs-keyword">uint</span> amountIn,
         <span class="hljs-keyword">uint</span> amountOutMin
@@ -80,13 +80,13 @@ const html = `<p><code>swapExactTokensForTokens</code> sells all tokens for anot
             <span class="hljs-built_in">block</span>.<span class="hljs-built_in">timestamp</span>
         );
 
-        <span class="hljs-comment">// amounts[0] = DAI amount</span>
-        <span class="hljs-comment">// amounts[1] = WETH amount</span>
-        <span class="hljs-comment">// amounts[2] = USDC amount</span>
+        <span class="hljs-comment">// amounts[0] = DAI miktarı</span>
+        <span class="hljs-comment">// amounts[1] = WETH miktarı</span>
+        <span class="hljs-comment">// amounts[2] = USDC miktarı</span>
         <span class="hljs-keyword">return</span> amounts[<span class="hljs-number">2</span>];
     }
 
-    <span class="hljs-comment">// Swap WETH to DAI</span>
+    <span class="hljs-comment">// WETH'yi DAI'ye çevir</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">swapSingleHopExactAmountOut</span>(<span class="hljs-params">
         <span class="hljs-keyword">uint</span> amountOutDesired,
         <span class="hljs-keyword">uint</span> amountInMax
@@ -107,7 +107,7 @@ const html = `<p><code>swapExactTokensForTokens</code> sells all tokens for anot
             <span class="hljs-built_in">block</span>.<span class="hljs-built_in">timestamp</span>
         );
 
-        <span class="hljs-comment">// Refund WETH to msg.sender</span>
+        <span class="hljs-comment">// Kalan WETH'yi msg.sender'a gönder</span>
         <span class="hljs-keyword">if</span> (amounts[<span class="hljs-number">0</span>] <span class="hljs-operator">&lt;</span> amountInMax) {
             weth.<span class="hljs-built_in">transfer</span>(<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>, amountInMax <span class="hljs-operator">-</span> amounts[<span class="hljs-number">0</span>]);
         }
@@ -115,7 +115,7 @@ const html = `<p><code>swapExactTokensForTokens</code> sells all tokens for anot
         <span class="hljs-keyword">return</span> amounts[<span class="hljs-number">1</span>];
     }
 
-    <span class="hljs-comment">// Swap DAI -&gt; WETH -&gt; USDC</span>
+    <span class="hljs-comment">// DAI -&gt; WETH -&gt; USDC (Çevir)</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">swapMultiHopExactAmountOut</span>(<span class="hljs-params">
         <span class="hljs-keyword">uint</span> amountOutDesired,
         <span class="hljs-keyword">uint</span> amountInMax
@@ -137,7 +137,7 @@ const html = `<p><code>swapExactTokensForTokens</code> sells all tokens for anot
             <span class="hljs-built_in">block</span>.<span class="hljs-built_in">timestamp</span>
         );
 
-        <span class="hljs-comment">// Refund DAI to msg.sender</span>
+        <span class="hljs-comment">// Kalan DAI'yi msg.sender'a gönder</span>
         <span class="hljs-keyword">if</span> (amounts[<span class="hljs-number">0</span>] <span class="hljs-operator">&lt;</span> amountInMax) {
             dai.<span class="hljs-built_in">transfer</span>(<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>, amountInMax <span class="hljs-operator">-</span> amounts[<span class="hljs-number">0</span>]);
         }
@@ -190,7 +190,7 @@ const html = `<p><code>swapExactTokensForTokens</code> sells all tokens for anot
 
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">withdraw</span>(<span class="hljs-params"><span class="hljs-keyword">uint</span> amount</span>) <span class="hljs-title"><span class="hljs-keyword">external</span></span></span>;
 }
-</code></pre><h3>Test with Foundry</h3>
+</code></pre><h3>Foundry ile Test</h3>
 <pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
 <span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.20;</span>
 
@@ -212,7 +212,7 @@ const html = `<p><code>swapExactTokensForTokens</code> sells all tokens for anot
 
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setUp</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{}
 
-    <span class="hljs-comment">// Swap WETH -&gt; DAI</span>
+    <span class="hljs-comment">// WETH'yi -&gt; DAI'ye çevir</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">testSwapSingleHopExactAmountIn</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
         <span class="hljs-keyword">uint</span> wethAmount <span class="hljs-operator">=</span> <span class="hljs-number">1e18</span>;
         weth.deposit{<span class="hljs-built_in">value</span>: wethAmount}();
@@ -225,9 +225,9 @@ const html = `<p><code>swapExactTokensForTokens</code> sells all tokens for anot
         assertGe(daiAmountOut, daiAmountMin, <span class="hljs-string">"amount out &lt; min"</span>);
     }
 
-    <span class="hljs-comment">// Swap DAI -&gt; WETH -&gt; USDC</span>
+    <span class="hljs-comment">// DAI -&gt; WETH -&gt; USDC (Çevir)</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">testSwapMultiHopExactAmountIn</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
-        <span class="hljs-comment">// Swap WETH -&gt; DAI</span>
+        <span class="hljs-comment">// WETH'yi -&gt; DAI'ye çevir</span>
         <span class="hljs-keyword">uint</span> wethAmount <span class="hljs-operator">=</span> <span class="hljs-number">1e18</span>;
         weth.deposit{<span class="hljs-built_in">value</span>: wethAmount}();
         weth.approve(<span class="hljs-keyword">address</span>(uni), wethAmount);
@@ -235,7 +235,7 @@ const html = `<p><code>swapExactTokensForTokens</code> sells all tokens for anot
         <span class="hljs-keyword">uint</span> daiAmountMin <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;
         uni.swapSingleHopExactAmountIn(wethAmount, daiAmountMin);
 
-        <span class="hljs-comment">// Swap DAI -&gt; WETH -&gt; USDC</span>
+        <span class="hljs-comment">// DAI -&gt; WETH -&gt; USDC (Çevir)</span>
         <span class="hljs-keyword">uint</span> daiAmountIn <span class="hljs-operator">=</span> <span class="hljs-number">1e18</span>;
         dai.approve(<span class="hljs-keyword">address</span>(uni), daiAmountIn);
 
@@ -249,7 +249,7 @@ const html = `<p><code>swapExactTokensForTokens</code> sells all tokens for anot
         assertGe(usdcAmountOut, usdcAmountOutMin, <span class="hljs-string">"amount out &lt; min"</span>);
     }
 
-    <span class="hljs-comment">// Swap WETH -&gt; DAI</span>
+    <span class="hljs-comment">// WETH'yi -&gt; DAI'ye çevir</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">testSwapSingleHopExactAmountOut</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
         <span class="hljs-keyword">uint</span> wethAmount <span class="hljs-operator">=</span> <span class="hljs-number">1e18</span>;
         weth.deposit{<span class="hljs-built_in">value</span>: wethAmount}();
@@ -265,18 +265,18 @@ const html = `<p><code>swapExactTokensForTokens</code> sells all tokens for anot
         assertEq(daiAmountOut, daiAmountDesired, <span class="hljs-string">"amount out != amount out desired"</span>);
     }
 
-    <span class="hljs-comment">// Swap DAI -&gt; WETH -&gt; USDC</span>
+    <span class="hljs-comment">// DAI -&gt; WETH -&gt; USDC (Çevir)</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">testSwapMultiHopExactAmountOut</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
-        <span class="hljs-comment">// Swap WETH -&gt; DAI</span>
+        <span class="hljs-comment">// WETH'yi WETH -&gt; DAI'ye çevir</span>
         <span class="hljs-keyword">uint</span> wethAmount <span class="hljs-operator">=</span> <span class="hljs-number">1e18</span>;
         weth.deposit{<span class="hljs-built_in">value</span>: wethAmount}();
         weth.approve(<span class="hljs-keyword">address</span>(uni), wethAmount);
 
-        <span class="hljs-comment">// Buy 100 DAI</span>
+        <span class="hljs-comment">// 100 DAI al</span>
         <span class="hljs-keyword">uint</span> daiAmountOut <span class="hljs-operator">=</span> <span class="hljs-number">100</span> <span class="hljs-operator">*</span> <span class="hljs-number">1e18</span>;
         uni.swapSingleHopExactAmountOut(daiAmountOut, wethAmount);
 
-        <span class="hljs-comment">// Swap DAI -&gt; WETH -&gt; USDC</span>
+        <span class="hljs-comment">// DAI -&gt; WETH -&gt; USDC (Çevir)</span>
         dai.approve(<span class="hljs-keyword">address</span>(uni), daiAmountOut);
 
         <span class="hljs-keyword">uint</span> amountOutDesired <span class="hljs-operator">=</span> <span class="hljs-number">1e6</span>;

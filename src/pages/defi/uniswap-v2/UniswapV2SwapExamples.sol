@@ -13,7 +13,7 @@ contract UniswapV2SwapExamples {
     IERC20 private weth = IERC20(WETH);
     IERC20 private dai = IERC20(DAI);
 
-    // Swap WETH to DAI
+    // WETH'yi DAI'ye çevir
     function swapSingleHopExactAmountIn(
         uint amountIn,
         uint amountOutMin
@@ -34,11 +34,11 @@ contract UniswapV2SwapExamples {
             block.timestamp
         );
 
-        // amounts[0] = WETH amount, amounts[1] = DAI amount
+        // amounts[0] = WETH miktarı, amounts[1] = DAI miktarı
         return amounts[1];
     }
 
-    // Swap DAI -> WETH -> USDC
+    // DAI -> WETH -> USDC (Çevir)
     function swapMultiHopExactAmountIn(
         uint amountIn,
         uint amountOutMin
@@ -60,13 +60,13 @@ contract UniswapV2SwapExamples {
             block.timestamp
         );
 
-        // amounts[0] = DAI amount
-        // amounts[1] = WETH amount
-        // amounts[2] = USDC amount
+        // amounts[0] = DAI miktarı
+        // amounts[1] = WETH miktarı
+        // amounts[2] = USDC miktarı
         return amounts[2];
     }
 
-    // Swap WETH to DAI
+    // WETH'yi DAI'ye çevir
     function swapSingleHopExactAmountOut(
         uint amountOutDesired,
         uint amountInMax
@@ -87,7 +87,7 @@ contract UniswapV2SwapExamples {
             block.timestamp
         );
 
-        // Refund WETH to msg.sender
+        // Kalan WETH'yi msg.sender'a gönder
         if (amounts[0] < amountInMax) {
             weth.transfer(msg.sender, amountInMax - amounts[0]);
         }
@@ -95,7 +95,7 @@ contract UniswapV2SwapExamples {
         return amounts[1];
     }
 
-    // Swap DAI -> WETH -> USDC
+    // DAI -> WETH -> USDC (Çevir)
     function swapMultiHopExactAmountOut(
         uint amountOutDesired,
         uint amountInMax
@@ -117,7 +117,7 @@ contract UniswapV2SwapExamples {
             block.timestamp
         );
 
-        // Refund DAI to msg.sender
+        // Kalan DAI'yi msg.sender'a gönder
         if (amounts[0] < amountInMax) {
             dai.transfer(msg.sender, amountInMax - amounts[0]);
         }
