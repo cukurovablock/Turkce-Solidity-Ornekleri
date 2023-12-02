@@ -1,17 +1,17 @@
 ---
-title: Uniswap V2 Add Remove Liquidity
+title: Uniswap V2 Likidite Ekleme ve Çıkartma
 version: 0.8.20
-description: Uniswap V2 add remove liquidity
+description: Uniswap V2 likidite ekleme ve çıkartma
 keywords: [defi, uniswap, v2, add, remove, liquidity, amm]
 ---
 
-### Add / Remove Liquidity
+### Likidite Ekleme / Çıkartma
 
 ```solidity
 {{{UniswapV2Liquidity}}}
 ```
 
-### Test with Foundry
+### Foundry ile Test Et
 
 `forge test --fork-url <ethereum-mainnet-rpc>`
 

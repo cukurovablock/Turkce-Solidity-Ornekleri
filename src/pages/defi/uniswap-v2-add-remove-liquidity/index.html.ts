@@ -1,7 +1,7 @@
 // metadata
 export const version = "0.8.20"
-export const title = "Uniswap V2 Add Remove Liquidity"
-export const description = "Uniswap V2 add remove liquidity"
+export const title = "Uniswap V2 likidite ekleme ve çıkartma"
+export const description = "Uniswap V2 likidite ekleme ve çıkartma"
 
 export const keywords = ["defi", "uniswap", "v2", "add", "remove", "liquidity", "amm"]
 
@@ -16,7 +16,7 @@ export const codes = [
   },
 ]
 
-const html = `<h3>Add / Remove Liquidity</h3>
+const html = `<h3>Likidite Ekleme / Çıkartma</h3>
 <pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
 <span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.20;</span>
 
@@ -69,9 +69,9 @@ const html = `<h3>Add / Remove Liquidity</h3>
     }
 
     <span class="hljs-comment">/**
-     * @dev The transferFrom function may or may not return a bool.
-     * The ERC-20 spec returns a bool, but some tokens don&#x27;t follow the spec.
-     * Need to check if data is empty or true.
+     * @dev transferFrom fonksiyonu boolean bir değer dönmeyebilir.
+     * ERC-20'ler boolean değer dönüyor fakat bazı tokenlar buna uymayabilir.
+     * Verinin boş mu yoksa True mu oldğunu kontrol etmemiz gerekiyor.
      */</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">safeTransferFrom</span>(<span class="hljs-params">
         IERC20 token,
@@ -89,9 +89,9 @@ const html = `<h3>Add / Remove Liquidity</h3>
     }
 
     <span class="hljs-comment">/**
-     * @dev The approve function may or may not return a bool.
-     * The ERC-20 spec returns a bool, but some tokens don&#x27;t follow the spec.
-     * Need to check if data is empty or true.
+     * @dev approve fonksiyonu boolean bir değer dönmeyebilir.
+     * ERC-20'ler boolean değer dönüyor fakat bazı tokenlar buna uymayabilir.
+     * Verinin boş mu yoksa True mu oldğunu kontrol etmemiz gerekiyor.
      */</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">safeApprove</span>(<span class="hljs-params">IERC20 token, <span class="hljs-keyword">address</span> spender, <span class="hljs-keyword">uint</span> amount</span>) <span class="hljs-title"><span class="hljs-keyword">internal</span></span> </span>{
         (<span class="hljs-keyword">bool</span> success, <span class="hljs-keyword">bytes</span> <span class="hljs-keyword">memory</span> returnData) <span class="hljs-operator">=</span> <span class="hljs-keyword">address</span>(token).<span class="hljs-built_in">call</span>(
@@ -148,7 +148,7 @@ const html = `<h3>Add / Remove Liquidity</h3>
         <span class="hljs-keyword">uint</span> amount
     </span>) <span class="hljs-title"><span class="hljs-keyword">external</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">bool</span></span>)</span>;
 }
-</code></pre><h3>Test with Foundry</h3>
+</code></pre><h3>Foundry ile Test Et</h3>
 <p><code>forge test --fork-url &lt;ethereum-mainnet-rpc&gt;</code></p>
 <pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
 <span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.20;</span>
@@ -165,15 +165,15 @@ IERC20 <span class="hljs-keyword">constant</span> PAIR <span class="hljs-operato
 <span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">UniswapV2AddLiquidityTest</span> <span class="hljs-keyword">is</span> <span class="hljs-title">Test</span> </span>{
     UniswapV2AddLiquidity <span class="hljs-keyword">private</span> uni <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> UniswapV2AddLiquidity();
 
-    <span class="hljs-comment">//  Add WETH/USDT Liquidity to Uniswap</span>
+    <span class="hljs-comment">//  Uniswap'a WETH/USDT likiditesi ekle</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">testAddLiquidity</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
-        <span class="hljs-comment">// Deal test USDT and WETH to this contract</span>
+        <span class="hljs-comment">// USDT ve WETH bakiyesini kontrol et</span>
         deal(<span class="hljs-keyword">address</span>(USDT), <span class="hljs-keyword">address</span>(<span class="hljs-built_in">this</span>), <span class="hljs-number">1e6</span> <span class="hljs-operator">*</span> <span class="hljs-number">1e6</span>);
         assertEq(USDT.balanceOf(<span class="hljs-keyword">address</span>(<span class="hljs-built_in">this</span>)), <span class="hljs-number">1e6</span> <span class="hljs-operator">*</span> <span class="hljs-number">1e6</span>, <span class="hljs-string">"USDT balance incorrect"</span>);
         deal(<span class="hljs-keyword">address</span>(WETH), <span class="hljs-keyword">address</span>(<span class="hljs-built_in">this</span>), <span class="hljs-number">1e6</span> <span class="hljs-operator">*</span> <span class="hljs-number">1e18</span>);
         assertEq(WETH.balanceOf(<span class="hljs-keyword">address</span>(<span class="hljs-built_in">this</span>)), <span class="hljs-number">1e6</span> <span class="hljs-operator">*</span> <span class="hljs-number">1e18</span>, <span class="hljs-string">"WETH balance incorrect"</span>);
 
-        <span class="hljs-comment">// Approve uni for transferring</span>
+        <span class="hljs-comment">// Uniswap'a harcama izni ver</span>
         safeApprove(WETH, <span class="hljs-keyword">address</span>(uni), <span class="hljs-number">1e64</span>);
         safeApprove(USDT, <span class="hljs-keyword">address</span>(uni), <span class="hljs-number">1e64</span>);
 
@@ -182,9 +182,9 @@ IERC20 <span class="hljs-keyword">constant</span> PAIR <span class="hljs-operato
         assertGt(PAIR.balanceOf(<span class="hljs-keyword">address</span>(uni)), <span class="hljs-number">0</span>, <span class="hljs-string">"pair balance 0"</span>);
     }
 
-    <span class="hljs-comment">// Remove WETH/USDT Liquidity from Uniswap</span>
+    <span class="hljs-comment">// Uniswap'tan WETH/USDT likiditesini kaldır</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">testRemoveLiquidity</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
-        <span class="hljs-comment">// Deal LP tokens to uni</span>
+        <span class="hljs-comment">// LP tokenları için bakiye kontrolü</span>
         deal(<span class="hljs-keyword">address</span>(PAIR), <span class="hljs-keyword">address</span>(uni), <span class="hljs-number">1e10</span>);
         assertEq(PAIR.balanceOf(<span class="hljs-keyword">address</span>(uni)), <span class="hljs-number">1e10</span>, <span class="hljs-string">"LP tokens balance = 0"</span>);
         assertEq(USDT.balanceOf(<span class="hljs-keyword">address</span>(uni)), <span class="hljs-number">0</span>, <span class="hljs-string">"USDT balance non-zero"</span>);
@@ -198,9 +198,9 @@ IERC20 <span class="hljs-keyword">constant</span> PAIR <span class="hljs-operato
     }
 
     <span class="hljs-comment">/**
-     * @dev The transferFrom function may or may not return a bool.
-     * The ERC-20 spec returns a bool, but some tokens don&#x27;t follow the spec.
-     * Need to check if data is empty or true.
+     * @dev transferFrom fonksiyonu boolean bir değer dönmeyebilir.
+     * ERC-20'ler boolean değer dönüyor fakat bazı tokenlar buna uymayabilir.
+     * Verinin boş mu yoksa True mu oldğunu kontrol etmemiz gerekiyor.
      */</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">safeTransferFrom</span>(<span class="hljs-params">
         IERC20 token,
@@ -218,9 +218,9 @@ IERC20 <span class="hljs-keyword">constant</span> PAIR <span class="hljs-operato
     }
 
     <span class="hljs-comment">/**
-     * @dev The approve function may or may not return a bool.
-     * The ERC-20 spec returns a bool, but some tokens don&#x27;t follow the spec.
-     * Need to check if data is empty or true.
+     * @dev approve fonksiyonu boolean bir değer dönmeyebilir.
+     * ERC-20'ler boolean değer dönüyor fakat bazı tokenlar buna uymayabilir.
+     * Verinin boş mu yoksa True mu oldğunu kontrol etmemiz gerekiyor.
      */</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">safeApprove</span>(<span class="hljs-params">IERC20 token, <span class="hljs-keyword">address</span> spender, <span class="hljs-keyword">uint</span> amount</span>) <span class="hljs-title"><span class="hljs-keyword">internal</span></span> </span>{
         (<span class="hljs-keyword">bool</span> success, <span class="hljs-keyword">bytes</span> <span class="hljs-keyword">memory</span> returnData) <span class="hljs-operator">=</span> <span class="hljs-keyword">address</span>(token).<span class="hljs-built_in">call</span>(
