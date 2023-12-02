@@ -20,19 +20,19 @@ contract TestUniswapOptimalOneSidedSupply {
     }
 
     /*
-    s = optimal swap amount
-    r = amount of reserve for token a
-    a = amount of token a the user currently has (not added to reserve yet)
-    f = swap fee percent
+    s = optimum swap miktarı
+    r = token a için optimum rezerv miktarı
+    a = kullanıcının elindeki token a miktarı (rezerv olarak eklemediği miktar)
+    f = yüzdelik swap ücreti 
     s = (sqrt(((2 - f)r)^2 + 4(1 - f)ar) - (2 - f)r) / (2(1 - f))
     */
     function getSwapAmount(uint r, uint a) public pure returns (uint) {
         return (sqrt(r * (r * 3988009 + a * 3988000)) - r * 1997) / 1994;
     }
 
-    /* Optimal one-sided supply
-    1. Swap optimal amount from token A to token B
-    2. Add liquidity
+    /* Optimum Tek Taraflı Likidite
+    1. token A'dan optimum miktarda token B'ye swap yap
+    2. Likidite ekle
     */
     function zap(address _tokenA, address _tokenB, uint _amountA) external {
         require(_tokenA == WETH || _tokenB == WETH, "!weth");
@@ -44,10 +44,10 @@ contract TestUniswapOptimalOneSidedSupply {
 
         uint swapAmount;
         if (IUniswapV2Pair(pair).token0() == _tokenA) {
-            // swap from token0 to token1
+            // token0'dan token1'e swap yap
             swapAmount = getSwapAmount(reserve0, _amountA);
         } else {
-            // swap from token1 to token0
+            // token1'den token0'a swap yap
             swapAmount = getSwapAmount(reserve1, _amountA);
         }
 

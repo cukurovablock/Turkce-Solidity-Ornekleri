@@ -1,7 +1,7 @@
 // metadata
 export const version = "0.8.20"
-export const title = "Uniswap V2 Optimal One Sided Supply"
-export const description = "Uniswap V2 Optimal One Sided Supply"
+export const title = "Uniswap V2 Optimum Tek Taraflı Likidite"
+export const description = "Uniswap V2 Optimum Tek Taraflı Likidite"
 
 export const keywords = [
   "defi",
@@ -21,7 +21,7 @@ export const codes = [
   },
 ]
 
-const html = `<h3>Optimal One Sided Supply</h3>
+const html = `<h3>Optimum Tek Taraflı Likidite</h3>
 <pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
 <span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.20;</span>
 
@@ -44,19 +44,19 @@ const html = `<h3>Optimal One Sided Supply</h3>
     }
 
     <span class="hljs-comment">/*
-    s = optimal swap amount
-    r = amount of reserve for token a
-    a = amount of token a the user currently has (not added to reserve yet)
-    f = swap fee percent
+    s = optimum swap miktarı
+    r = token a için optimum rezerv miktarı
+    a = kullanıcının elindeki token a miktarı (rezerv olarak eklemediği miktar)
+    f = yüzdelik swap ücreti 
     s = (sqrt(((2 - f)r)^2 + 4(1 - f)ar) - (2 - f)r) / (2(1 - f))
     */</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getSwapAmount</span>(<span class="hljs-params"><span class="hljs-keyword">uint</span> r, <span class="hljs-keyword">uint</span> a</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title"><span class="hljs-keyword">pure</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">uint</span></span>) </span>{
         <span class="hljs-keyword">return</span> (sqrt(r <span class="hljs-operator">*</span> (r <span class="hljs-operator">*</span> <span class="hljs-number">3988009</span> <span class="hljs-operator">+</span> a <span class="hljs-operator">*</span> <span class="hljs-number">3988000</span>)) <span class="hljs-operator">-</span> r <span class="hljs-operator">*</span> <span class="hljs-number">1997</span>) <span class="hljs-operator">/</span> <span class="hljs-number">1994</span>;
     }
 
-    <span class="hljs-comment">/* Optimal one-sided supply
-    1. Swap optimal amount from token A to token B
-    2. Add liquidity
+    <span class="hljs-comment">/* Optimum Tek Taraflı Likidite
+    1. token A'dan optimum miktarda token B'ye swap yap
+    2. Likidite ekle
     */</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">zap</span>(<span class="hljs-params"><span class="hljs-keyword">address</span> _tokenA, <span class="hljs-keyword">address</span> _tokenB, <span class="hljs-keyword">uint</span> _amountA</span>) <span class="hljs-title"><span class="hljs-keyword">external</span></span> </span>{
         <span class="hljs-built_in">require</span>(_tokenA <span class="hljs-operator">=</span><span class="hljs-operator">=</span> WETH <span class="hljs-operator">|</span><span class="hljs-operator">|</span> _tokenB <span class="hljs-operator">=</span><span class="hljs-operator">=</span> WETH, <span class="hljs-string">"!weth"</span>);
@@ -68,10 +68,10 @@ const html = `<h3>Optimal One Sided Supply</h3>
 
         <span class="hljs-keyword">uint</span> swapAmount;
         <span class="hljs-keyword">if</span> (IUniswapV2Pair(pair).token0() <span class="hljs-operator">=</span><span class="hljs-operator">=</span> _tokenA) {
-            <span class="hljs-comment">// swap from token0 to token1</span>
+            <span class="hljs-comment">// token0'dan token1'e swap yap</span>
             swapAmount <span class="hljs-operator">=</span> getSwapAmount(reserve0, _amountA);
         } <span class="hljs-keyword">else</span> {
-            <span class="hljs-comment">// swap from token1 to token0</span>
+            <span class="hljs-comment">// token1'den token0'a swap yap</span>
             swapAmount <span class="hljs-operator">=</span> getSwapAmount(reserve1, _amountA);
         }
 
