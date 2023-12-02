@@ -23,7 +23,7 @@ contract UniswapV2FlashSwap is IUniswapV2Callee {
 
     IUniswapV2Pair private immutable pair;
 
-    // For this example, store the amount to repay
+    // Bu örnek için, ödenecek miktarı kaydedin
     uint public amountToRepay;
 
     constructor() {
@@ -31,14 +31,14 @@ contract UniswapV2FlashSwap is IUniswapV2Callee {
     }
 
     function flashSwap(uint wethAmount) external {
-        // Need to pass some data to trigger uniswapV2Call
+        // uniswapV2Call fonksiyonunu tetiklemek için birkaç veri göndermek gerekiyor
         bytes memory data = abi.encode(WETH, msg.sender);
 
-        // amount0Out is DAI, amount1Out is WETH
+        // amount0Out DAI'yi temsil ediyor, amount1Out ise WETH'yi
         pair.swap(0, wethAmount, address(this), data);
     }
 
-    // This function is called by the DAI/WETH pair contract
+    // Bu fonksiyon DAI/WETH kontratı tarafından çağırılıyor
     function uniswapV2Call(
         address sender,
         uint amount0,
@@ -50,17 +50,17 @@ contract UniswapV2FlashSwap is IUniswapV2Callee {
 
         (address tokenBorrow, address caller) = abi.decode(data, (address, address));
 
-        // Your custom code would go here. For example, code to arbitrage.
+        // Sizin yazacağınız kod buraya yazılacak. Örneğin, arbitraj kodu.
         require(tokenBorrow == WETH, "token borrow != WETH");
 
-        // about 0.3% fee, +1 to round up
+        // Yaklaşık yüzde 0.3 fee, +1 kısmını yumarlamak için ekliyoruz
         uint fee = (amount1 * 3) / 997 + 1;
         amountToRepay = amount1 + fee;
 
-        // Transfer flash swap fee from caller
+        // Kullanıcıdan flash swap feeyi burada transfer ediyoruz
         weth.transferFrom(caller, address(this), fee);
 
-        // Repay
+        // Geri ödeme kısmı
         weth.transfer(address(pair), amountToRepay);
     }
 }

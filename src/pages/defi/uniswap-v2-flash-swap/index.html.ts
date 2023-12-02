@@ -16,7 +16,7 @@ export const codes = [
   },
 ]
 
-const html = `<h3>Uniswap V2 Flash Swap Example</h3>
+const html = `<h3>Uniswap V2 Flash Swap Örneği</h3>
 <pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
 <span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.20;</span>
 
@@ -42,7 +42,7 @@ const html = `<h3>Uniswap V2 Flash Swap Example</h3>
 
     IUniswapV2Pair <span class="hljs-keyword">private</span> <span class="hljs-keyword">immutable</span> pair;
 
-    <span class="hljs-comment">// For this example, store the amount to repay</span>
+    <span class="hljs-comment">// Bu örnek için, ödenecek miktarı kaydedin</span>
     <span class="hljs-keyword">uint</span> <span class="hljs-keyword">public</span> amountToRepay;
 
     <span class="hljs-function"><span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) </span>{
@@ -50,14 +50,14 @@ const html = `<h3>Uniswap V2 Flash Swap Example</h3>
     }
 
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">flashSwap</span>(<span class="hljs-params"><span class="hljs-keyword">uint</span> wethAmount</span>) <span class="hljs-title"><span class="hljs-keyword">external</span></span> </span>{
-        <span class="hljs-comment">// Need to pass some data to trigger uniswapV2Call</span>
+        <span class="hljs-comment">// uniswapV2Call fonksiyonunu tetiklemek için birkaç veri göndermek gerekiyor</span>
         <span class="hljs-keyword">bytes</span> <span class="hljs-keyword">memory</span> data <span class="hljs-operator">=</span> <span class="hljs-built_in">abi</span>.<span class="hljs-built_in">encode</span>(WETH, <span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>);
 
-        <span class="hljs-comment">// amount0Out is DAI, amount1Out is WETH</span>
+        <span class="hljs-comment">// amount0Out DAI'yi temsil ediyor, amount1Out ise WETH'yi</span>
         pair.swap(<span class="hljs-number">0</span>, wethAmount, <span class="hljs-keyword">address</span>(<span class="hljs-built_in">this</span>), data);
     }
 
-    <span class="hljs-comment">// This function is called by the DAI/WETH pair contract</span>
+    <span class="hljs-comment">// Bu fonksiyon DAI/WETH kontratı tarafından çağırılıyor</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">uniswapV2Call</span>(<span class="hljs-params">
         <span class="hljs-keyword">address</span> sender,
         <span class="hljs-keyword">uint</span> amount0,
@@ -69,17 +69,17 @@ const html = `<h3>Uniswap V2 Flash Swap Example</h3>
 
         (<span class="hljs-keyword">address</span> tokenBorrow, <span class="hljs-keyword">address</span> caller) <span class="hljs-operator">=</span> <span class="hljs-built_in">abi</span>.<span class="hljs-built_in">decode</span>(data, (<span class="hljs-keyword">address</span>, <span class="hljs-keyword">address</span>));
 
-        <span class="hljs-comment">// Your custom code would go here. For example, code to arbitrage.</span>
+        <span class="hljs-comment">// Sizin yazacağınız kod buraya yazılacak. Örneğin, arbitraj kodu.</span>
         <span class="hljs-built_in">require</span>(tokenBorrow <span class="hljs-operator">=</span><span class="hljs-operator">=</span> WETH, <span class="hljs-string">"token borrow != WETH"</span>);
 
-        <span class="hljs-comment">// about 0.3% fee, +1 to round up</span>
+        <span class="hljs-comment">// Yaklaşık yüzde 0.3 fee, +1 kısmını yumarlamak için ekliyoruz</span>
         <span class="hljs-keyword">uint</span> fee <span class="hljs-operator">=</span> (amount1 <span class="hljs-operator">*</span> <span class="hljs-number">3</span>) <span class="hljs-operator">/</span> <span class="hljs-number">997</span> <span class="hljs-operator">+</span> <span class="hljs-number">1</span>;
         amountToRepay <span class="hljs-operator">=</span> amount1 <span class="hljs-operator">+</span> fee;
 
-        <span class="hljs-comment">// Transfer flash swap fee from caller</span>
+        <span class="hljs-comment">// Kullanıcıdan flash swap feeyi burada transfer ediyoruz</span>
         weth.transferFrom(caller, <span class="hljs-keyword">address</span>(<span class="hljs-built_in">this</span>), fee);
 
-        <span class="hljs-comment">// Repay</span>
+        <span class="hljs-comment">// Geri ödeme kısmı</span>
         weth.<span class="hljs-built_in">transfer</span>(<span class="hljs-keyword">address</span>(pair), amountToRepay);
     }
 }
@@ -126,9 +126,9 @@ const html = `<h3>Uniswap V2 Flash Swap Example</h3>
 
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">withdraw</span>(<span class="hljs-params"><span class="hljs-keyword">uint</span> amount</span>) <span class="hljs-title"><span class="hljs-keyword">external</span></span></span>;
 }
-</code></pre><h3>Test with Foundry</h3>
+</code></pre><h3>Foundry ile Test Et</h3>
 <ol>
-<li>Copy and paste this into <code>test</code> folder in your foundry project</li>
+<li>Bu kodu kopyalayıp projenizin <code>test</code> klasörüne kaydedin</li>
 </ol>
 <pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
 <span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.20;</span>
@@ -151,7 +151,7 @@ const html = `<h3>Uniswap V2 Flash Swap Example</h3>
 
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">testFlashSwap</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
         weth.deposit{<span class="hljs-built_in">value</span>: <span class="hljs-number">1e18</span>}();
-        <span class="hljs-comment">// Approve flash swap fee</span>
+        <span class="hljs-comment">// Flash swap fee için harcama izni ver</span>
         weth.approve(<span class="hljs-keyword">address</span>(uni), <span class="hljs-number">1e18</span>);
 
         <span class="hljs-keyword">uint</span> amountToBorrow <span class="hljs-operator">=</span> <span class="hljs-number">10</span> <span class="hljs-operator">*</span> <span class="hljs-number">1e18</span>;
@@ -161,13 +161,13 @@ const html = `<h3>Uniswap V2 Flash Swap Example</h3>
     }
 }
 </code></pre><ol start="2">
-<li>Execute the following commands to run the test</li>
+<li>Testi başlatmak için aşağıdaki komutları çalıştırın</li>
 </ol>
 <pre><code class="language-shell">FORK_URL=https://eth-mainnet.g.alchemy.com/v2/613t3mfjTevdrCwDl28CVvuk6wSIxRPi
 forge test -vv --gas-report --fork-url $FORK_URL --match-path test/UniswapV2FlashSwap.test.sol
 </code></pre><h3>Links</h3>
 <p><a href="https://github.com/foundry-rs/foundry" target="__blank">Foundry</a></p>
-<p><a href="https://github.com/t4sk/defi-notes" target="__blank">Uniswap V3 Foundry example</a></p>
+<p><a href="https://github.com/t4sk/defi-notes" target="__blank">Uniswap V3 Foundry örneği</a></p>
 `
 
 export default html

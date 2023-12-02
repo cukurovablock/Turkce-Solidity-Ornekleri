@@ -19,7 +19,7 @@ contract UniswapV2FlashSwapTest is Test {
 
     function testFlashSwap() public {
         weth.deposit{value: 1e18}();
-        // Approve flash swap fee
+        // Flash swap fee için harcama izni ver
         weth.approve(address(uni), 1e18);
 
         uint amountToBorrow = 10 * 1e18;
