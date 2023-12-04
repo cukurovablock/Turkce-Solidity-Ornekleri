@@ -19,7 +19,7 @@ contract UniswapV3FlashTest is Test {
     function setUp() public {}
 
     function testFlash() public {
-        // Approve WETH fee
+        // Fee için WETH harcama limiti ver
         weth.deposit{value: 1e18}();
         weth.approve(address(uni), 1e18);
 

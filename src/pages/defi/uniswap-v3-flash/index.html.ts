@@ -1,7 +1,7 @@
 // metadata
 export const version = "0.8.20"
-export const title = "Uniswap V3 Flash Loan"
-export const description = "Uniswap V3 Flash Loan"
+export const title = "Uniswap V3 Flash Kredi"
+export const description = "Uniswap V3 Flash Kredi"
 
 export const keywords = ["defi", "uniswap", "v3", "flash", "loan", "amm"]
 
@@ -16,7 +16,7 @@ export const codes = [
   },
 ]
 
-const html = `<h3>Uniswap V3 Flash Loan Example</h3>
+const html = `<h3>Uniswap V3 Flash Kredi Örneği</h3>
 <pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
 <span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.20;</span>
 
@@ -69,7 +69,7 @@ const html = `<h3>Uniswap V3 Flash Loan Example</h3>
 
         FlashCallbackData <span class="hljs-keyword">memory</span> decoded <span class="hljs-operator">=</span> <span class="hljs-built_in">abi</span>.<span class="hljs-built_in">decode</span>(data, (FlashCallbackData));
 
-        <span class="hljs-comment">// Repay borrow</span>
+        <span class="hljs-comment">// Borcu öde</span>
         <span class="hljs-keyword">if</span> (fee0 <span class="hljs-operator">&gt;</span> <span class="hljs-number">0</span>) {
             token0.transferFrom(decoded.caller, <span class="hljs-keyword">address</span>(<span class="hljs-built_in">this</span>), fee0);
             token0.<span class="hljs-built_in">transfer</span>(<span class="hljs-keyword">address</span>(pool), decoded.amount0 <span class="hljs-operator">+</span> fee0);
@@ -157,9 +157,9 @@ const html = `<h3>Uniswap V3 Flash Loan Example</h3>
 
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">withdraw</span>(<span class="hljs-params"><span class="hljs-keyword">uint</span> amount</span>) <span class="hljs-title"><span class="hljs-keyword">external</span></span></span>;
 }
-</code></pre><h3>Test with Foundry</h3>
+</code></pre><h3>Foundry ile Test Et</h3>
 <ol>
-<li>Copy and paste this into <code>test</code> folder in your foundry project</li>
+<li>Bu kodu kopyalayıp projenizin <code>test</code> klasörüne kaydedin</li>
 </ol>
 <pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
 <span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.20;</span>
@@ -195,13 +195,13 @@ const html = `<h3>Uniswap V3 Flash Loan Example</h3>
     }
 }
 </code></pre><ol start="2">
-<li>Execute the following commands to run the test</li>
+<li>Testi başlatmak için aşağıdaki komutları çalıştırın</li>
 </ol>
 <pre><code class="language-shell">FORK_URL=https://eth-mainnet.g.alchemy.com/v2/613t3mfjTevdrCwDl28CVvuk6wSIxRPi
 forge test -vv --gas-report --fork-url $FORK_URL --match-path test/UniswapV3FlashTest.test.sol
 </code></pre><h3>Links</h3>
 <p><a href="https://github.com/foundry-rs/foundry" target="__blank">Foundry</a></p>
-<p><a href="https://github.com/t4sk/defi-notes" target="__blank">Uniswap V3 Foundry example</a></p>
+<p><a href="https://github.com/t4sk/defi-notes" target="__blank">Uniswap V3 Foundry örneği</a></p>
 `
 
 export default html
