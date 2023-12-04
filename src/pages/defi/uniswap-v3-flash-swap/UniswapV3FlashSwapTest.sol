@@ -17,13 +17,13 @@ contract UniswapV3FlashSwapTest is Test {
     function setUp() public {}
 
     function testFlashSwap() public {
-        // USDC / WETH pool
+        // USDC / WETH havuzu
         address pool0 = 0x8ad599c3A0ff1De082011EFDDc58f1908eb6e6D8;
         uint24 fee0 = 3000;
         address pool1 = 0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640;
         uint24 fee1 = 500;
 
-        // Approve WETH fee
+        // WETH fee için harcama izni ver
         uint wethMaxFee = 1e18;
         weth.deposit{value: wethMaxFee}();
         weth.approve(address(uni), wethMaxFee);

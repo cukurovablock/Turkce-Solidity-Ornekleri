@@ -9,9 +9,9 @@ contract UniswapV3FlashSwap {
     uint160 internal constant MAX_SQRT_RATIO =
         1461446703485210103287273052203988822378723970342;
 
-    // Example WETH/USDC
-    // Sell WETH high      -> Buy WETH low        -> WETH profit
-    // WETH in -> USDC out -> USDC in -> WETH out -> WETH profit
+    // WETH/USDC örneği
+    // Yüksekten WETH sat      -> Düşükten WETH al        -> WETH'den kar et
+    // WETH içeri -> USDC dışarı -> USDC içeri -> WETH dışarı -> WETH'den kar et
     function flashSwap(
         address pool0,
         uint24 fee1,

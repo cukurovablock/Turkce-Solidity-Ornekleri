@@ -1,7 +1,7 @@
 // metadata
 export const version = "0.8.20"
-export const title = "Uniswap V3 Flash Swap Arbitrage"
-export const description = "Uniswap V3 Flash Swap Arbitrage"
+export const title = "Uniswap V3 Flash Swap Arbitraj"
+export const description = "Uniswap V3 Flash Swap Arbitraj"
 
 export const keywords = ["defi", "uniswap", "v3", "swap", "arbitrage", "amm"]
 
@@ -16,7 +16,7 @@ export const codes = [
   },
 ]
 
-const html = `<h3>Uniswap V3 Flash Swap Arbitrage Example</h3>
+const html = `<h3>Uniswap V3 Flash Swap Arbitraj Örneği</h3>
 <pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
 <span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.20;</span>
 
@@ -28,9 +28,9 @@ const html = `<h3>Uniswap V3 Flash Swap Arbitrage Example</h3>
     <span class="hljs-keyword">uint160</span> <span class="hljs-keyword">internal</span> <span class="hljs-keyword">constant</span> MAX_SQRT_RATIO <span class="hljs-operator">=</span>
         <span class="hljs-number">1461446703485210103287273052203988822378723970342</span>;
 
-    <span class="hljs-comment">// Example WETH/USDC</span>
-    <span class="hljs-comment">// Sell WETH high      -&gt; Buy WETH low        -&gt; WETH profit</span>
-    <span class="hljs-comment">// WETH in -&gt; USDC out -&gt; USDC in -&gt; WETH out -&gt; WETH profit</span>
+    <span class="hljs-comment">// WETH/USDC örneği</span>
+    <span class="hljs-comment">// Yüksekten WETH sat      -&gt; Düşükten WETH al        -&gt; WETH'den kar et</span>
+    <span class="hljs-comment">// WETH içeri -&gt; USDC dışarı -&gt; USDC içeri -&gt; WETH dışarı -&gt; WETH'den kar et</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">flashSwap</span>(<span class="hljs-params">
         <span class="hljs-keyword">address</span> pool0,
         <span class="hljs-keyword">uint24</span> fee1,
@@ -175,9 +175,9 @@ const html = `<h3>Uniswap V3 Flash Swap Arbitrage Example</h3>
 
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">withdraw</span>(<span class="hljs-params"><span class="hljs-keyword">uint</span> amount</span>) <span class="hljs-title"><span class="hljs-keyword">external</span></span></span>;
 }
-</code></pre><h3>Test with Foundry</h3>
+</code></pre><h3>Foundry ile Test Et</h3>
 <ol>
-<li>Copy and paste this into <code>test</code> folder in your foundry project</li>
+<li>Bu kodu kopyalayıp projenizin <code>test</code> klasörüne kaydedin</li>
 </ol>
 <pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
 <span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.20;</span>
@@ -198,13 +198,13 @@ const html = `<h3>Uniswap V3 Flash Swap Arbitrage Example</h3>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setUp</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{}
 
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">testFlashSwap</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
-        <span class="hljs-comment">// USDC / WETH pool</span>
+        <span class="hljs-comment">// USDC / WETH havuzu</span>
         <span class="hljs-keyword">address</span> pool0 <span class="hljs-operator">=</span> <span class="hljs-number">0x8ad599c3A0ff1De082011EFDDc58f1908eb6e6D8</span>;
         <span class="hljs-keyword">uint24</span> fee0 <span class="hljs-operator">=</span> <span class="hljs-number">3000</span>;
         <span class="hljs-keyword">address</span> pool1 <span class="hljs-operator">=</span> <span class="hljs-number">0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640</span>;
         <span class="hljs-keyword">uint24</span> fee1 <span class="hljs-operator">=</span> <span class="hljs-number">500</span>;
 
-        <span class="hljs-comment">// Approve WETH fee</span>
+        <span class="hljs-comment">// WETH fee için harcama izni ver</span>
         <span class="hljs-keyword">uint</span> wethMaxFee <span class="hljs-operator">=</span> <span class="hljs-number">1e18</span>;
         weth.deposit{<span class="hljs-built_in">value</span>: wethMaxFee}();
         weth.approve(<span class="hljs-keyword">address</span>(uni), wethMaxFee);
@@ -221,13 +221,13 @@ const html = `<h3>Uniswap V3 Flash Swap Arbitrage Example</h3>
     }
 }
 </code></pre><ol start="2">
-<li>Execute the following commands to run the test</li>
+<li>Testi başlatmak için aşağıdaki komutları çalıştırın</li>
 </ol>
 <pre><code class="language-shell">FORK_URL=https://eth-mainnet.g.alchemy.com/v2/613t3mfjTevdrCwDl28CVvuk6wSIxRPi
 forge test -vv --gas-report --fork-url $FORK_URL --match-path test/UniswapV3FlashSwapTest.test.sol
-</code></pre><h3>Links</h3>
+</code></pre><h3>Linkler</h3>
 <p><a href="https://github.com/foundry-rs/foundry" target="__blank">Foundry</a></p>
-<p><a href="https://github.com/t4sk/defi-notes" target="__blank">Uniswap V3 Foundry example</a></p>
+<p><a href="https://github.com/t4sk/defi-notes" target="__blank">Uniswap V3 Foundry örneği</a></p>
 `
 
 export default html
