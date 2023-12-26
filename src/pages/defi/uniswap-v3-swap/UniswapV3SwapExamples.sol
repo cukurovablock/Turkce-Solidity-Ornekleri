@@ -60,9 +60,10 @@ interface ISwapRouter {
         uint160 sqrtPriceLimitX96;
     }
 
-    /// @notice Swaps amountIn of one token for as much as possible of another token
-    /// @param params The parameters necessary for the swap, encoded as ExactInputSingleParams in calldata
-    /// @return amountOut The amount of the received token
+    /// @notice amountIn'deki token miktarını elinden geldiğince daha fazla miktarda diğer token'a çevirmeye çalışır
+    /// @param params Takas (swap) için gerekli olan parametreler, calldata'da ExactInputSingleParams olarak kodlanmıştır
+    /// @return amountOut -> Alınan token miktarı
+    /// @return 
     function exactInputSingle(
         ExactInputSingleParams calldata params
     ) external payable returns (uint amountOut);
@@ -75,9 +76,9 @@ interface ISwapRouter {
         uint amountOutMinimum;
     }
 
-    /// @notice Swaps amountIn of one token for as much as possible of another along the specified path
-    /// @param params The parameters necessary for the multi-hop swap, encoded as ExactInputParams in calldata
-    /// @return amountOut The amount of the received token
+    /// @notice Belirtilen yol boyunca bir token'ın mümkün olduğunca fazlasını diğer token ile değiştirir
+    /// @param params multi-hop swap için gerekli olan parametreler, calldata'da ExactInputParams olarak kodlanmıştır
+    /// @return amountOut -> Alınan token miktarı
     function exactInput(
         ExactInputParams calldata params
     ) external payable returns (uint amountOut);

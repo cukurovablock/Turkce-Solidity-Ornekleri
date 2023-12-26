@@ -1,7 +1,7 @@
 // metadata
 export const version = "0.8.20"
-export const title = "Uniswap V3 Swap Examples"
-export const description = "Uniswap V3 swap examples"
+export const title = "Uniswap V3 Swap Örneği"
+export const description = "Uniswap V3 swap örneği"
 
 export const keywords = ["defi", "uniswap", "v3", "swap", "amm"]
 
@@ -16,7 +16,7 @@ export const codes = [
   },
 ]
 
-const html = `<h3>Uniswap V3 Swap Examples</h3>
+const html = `<h3>Uniswap V3 Swap Örneği</h3>
 <pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
 <span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.20;</span>
 
@@ -79,9 +79,9 @@ const html = `<h3>Uniswap V3 Swap Examples</h3>
         <span class="hljs-keyword">uint160</span> sqrtPriceLimitX96;
     }
 
-    <span class="hljs-comment">/// @notice Swaps amountIn of one token for as much as possible of another token</span>
-    <span class="hljs-comment">/// @param params The parameters necessary for the swap, encoded as ExactInputSingleParams in calldata</span>
-    <span class="hljs-comment">/// @return amountOut The amount of the received token</span>
+    <span class="hljs-comment">/// @notice amountIn'deki token miktarını elinden geldiğince daha fazla miktarda diğer token'a çevirmeye çalışır</span>
+    <span class="hljs-comment">/// @param params Takas (swap) için gerekli olan parametreler, calldata'da ExactInputSingleParams olarak kodlanmıştır</span>
+    <span class="hljs-comment">/// @return amountOut -> Alınan token miktarı</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">exactInputSingle</span>(<span class="hljs-params">
         ExactInputSingleParams <span class="hljs-keyword">calldata</span> params
     </span>) <span class="hljs-title"><span class="hljs-keyword">external</span></span> <span class="hljs-title"><span class="hljs-keyword">payable</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">uint</span> amountOut</span>)</span>;
@@ -94,9 +94,9 @@ const html = `<h3>Uniswap V3 Swap Examples</h3>
         <span class="hljs-keyword">uint</span> amountOutMinimum;
     }
 
-    <span class="hljs-comment">/// @notice Swaps amountIn of one token for as much as possible of another along the specified path</span>
-    <span class="hljs-comment">/// @param params The parameters necessary for the multi-hop swap, encoded as ExactInputParams in calldata</span>
-    <span class="hljs-comment">/// @return amountOut The amount of the received token</span>
+    <span class="hljs-comment">/// @notice Belirtilen yol boyunca bir token'ın mümkün olduğunca fazlasını diğer token ile değiştirir</span>
+    <span class="hljs-comment">/// @param params multi-hop swap için gerekli olan parametreler, calldata'da ExactInputParams olarak kodlanmıştır</span>
+    <span class="hljs-comment">/// @return amountOut -> Alınan token miktarı</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">exactInput</span>(<span class="hljs-params">
         ExactInputParams <span class="hljs-keyword">calldata</span> params
     </span>) <span class="hljs-title"><span class="hljs-keyword">external</span></span> <span class="hljs-title"><span class="hljs-keyword">payable</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">uint</span> amountOut</span>)</span>;
@@ -128,9 +128,9 @@ const html = `<h3>Uniswap V3 Swap Examples</h3>
 
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">withdraw</span>(<span class="hljs-params"><span class="hljs-keyword">uint</span> amount</span>) <span class="hljs-title"><span class="hljs-keyword">external</span></span></span>;
 }
-</code></pre><h3>Test with Foundry</h3>
+</code></pre><h3>Foundry ile test et</h3>
 <ol>
-<li>Copy and paste this into <code>test</code> folder in your foundry project</li>
+<li>Bu kodu kopyalayıp projenizin <code>test</code> klasörüne kaydedin</li>
 </ol>
 <pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
 <span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.20;</span>
@@ -180,14 +180,14 @@ const html = `<h3>Uniswap V3 Swap Examples</h3>
     }
 }
 </code></pre><ol start="2">
-<li>Execute the following commands to run the test</li>
+<li>Testi başlatmak için aşağıdaki komutları çalıştırın</li>
 </ol>
 <pre><code class="language-shell">FORK_URL=https://eth-mainnet.g.alchemy.com/v2/613t3mfjTevdrCwDl28CVvuk6wSIxRPi
 forge test -vv --gas-report --fork-url $FORK_URL --match-path test/UniswapV3SwapExamples.test.sol
 </code></pre><h3>Links</h3>
 <p><a href="https://docs.uniswap.org/protocol/guides/swaps/single-swaps" target="__blank">Uniswap V3</a></p>
 <p><a href="https://github.com/foundry-rs/foundry" target="__blank">Foundry</a></p>
-<p><a href="https://github.com/t4sk/defi-notes" target="__blank">Uniswap V3 Foundry example</a></p>
+<p><a href="https://github.com/t4sk/defi-notes" target="__blank">Uniswap V3 Foundry örneği</a></p>
 `
 
 export default html
